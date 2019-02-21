@@ -56,6 +56,7 @@ def main(t_token, channel):
 
             for example in posts[::-1]:
                 unique_id = '{}_{}'.format(example['local_url'], example['date'])
+                print(example)
                 if unique_id not in posts_id:
                     requests.get(TELEGRAM_URL.replace('BOT_TOKEN', t_token), params = {'chat_id': channel, 
                                    'text': example['text']+'\n'+'{}{}'.format(BASE_URL,example['local_url'])})

@@ -10,7 +10,7 @@ def get_list_of_posts(url):
     text = requests.get(BASE_URL + FORUM).text
     soup = BeautifulSoup(text, features='html.parser')
     posts_tr = [tr for tr in soup.findChildren('tr') if len(tr) == 11]
-    posts = [{'post_text': tr.find('td').find('a').string, 'local_url': tr.find('td').find('a').get('href'), 'date': tr.find('td', {'class': 'tc', 'width': "100px"})}  for tr in posts_tr[1:]]
+    posts = [{'post_text': tr.find('td').find('a').string, 'local_url': tr.find('td').find('a').get('href'), 'date': tr.find('td', {'class': 'tc', 'width': "100px"}).string}  for tr in posts_tr[1:]]
     return posts
 
 def filter_out(posts, template):
